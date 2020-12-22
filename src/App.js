@@ -1,5 +1,13 @@
-function App() {
-  return <h1>Setting the app</h1>;
-}
+import React, { Component } from "react";
+import NavBar from "./components/navbar";
 
+class App extends Component {
+  render() {
+    return (
+      <React.Fragment>
+        <NavBar />
+      </React.Fragment>
+    );
+  }
+}
 export default App;
