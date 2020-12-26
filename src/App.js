@@ -1,43 +1,37 @@
-import React, { Component } from "react";
-import NavBar from "./components/navbar";
-import PokemonList from "./components/pokemonList";
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      pokemonList: [],
-      isLoaded: false,
-    };
-  }
-  componentDidMount() {
-   this.getData();
-  }
-  getData(){
-    fetch("https://pokeapi.co/api/v2/pokemon/?limit=1200")
-    .then((res) => res.json())
-    .then((json) => {
-      this.setState({
-        isLoaded: true,
-        pokemonList: json,
-      });
-    });
-  }
-  render() {
-    var { isLoaded, pokemonList } = this.state;
-    return (
-      <React.Fragment>
+import "./App.css";
+
+import {
+  Redirect,
+  Route,
+  BrowserRouter as Router,
+  Switch,
+} from "react-router-dom";
+
+import DetailsContainer from "./containers/DetailsContainer";
+import ListContainer from "./containers/ListContainer";
+import MasterDetailsLayout from "./components/layouts/MasterDetails";
+import NavBar from "./components/navBar/NavBar";
+import NotFound from "./components/navList/NotFound";
+import React from "react";
+
+function App() {
+  return (
+    <React.Fragment>
+      <Router>
         <NavBar />
-        <main className="container">
-        <div style={{width: "50%", marginTop:"10px"}}>
-          {!isLoaded ? (
-            <div className="spinner-border"></div>
-          ) : (
-            <PokemonList pokemonList={pokemonList} />
-          )}
-          </div>
+        <main className="app-container">
+        <MasterDetailsLayout>
+          <ListContainer />
+          
+          <Switch>
+            <Route path="/pokemon/:id" component={DetailsContainer} />
+            <Route path="/404" component={NotFound} />
+            <Redirect to="/404" />
+          </Switch>
+          </MasterDetailsLayout>
         </main>
-      </React.Fragment>
-    );
-  }
+      </Router>
+    </React.Fragment>
+  );
 }
 export default App;
