@@ -1,0 +1,12 @@
+{
+    "rules": {
+        "import/prefer-default-export": "off"
+    },
+    "overrides": [{
+        "files": [ "*.spec.js"],
+        "rules": {
+          "no-unused-expressions": 0,
+          "require-jsdoc": "off"
+        }
+      }]
+}
