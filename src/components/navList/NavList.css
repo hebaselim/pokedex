@@ -1,3 +1,10 @@
-.nav-list{
-    display: flex;
+ul {
+    list-style-type: none;
+    padding: 0 15px;
+}
+
+.nav-list-container {
+    max-height: 90vh;
+    overflow-y: auto;
+    flex: 1;
 }

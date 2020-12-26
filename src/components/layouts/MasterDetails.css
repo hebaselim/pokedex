@@ -1,0 +1,12 @@
+.master-details-container {
+    display: flex;
+    flex: 1;
+}
+
+.master {
+ flex: 1;   
+}
+
+.details {
+ flex: 3;
+}

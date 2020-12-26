@@ -6,13 +6,13 @@ import { getIdFromUrl } from "../../utils/helpers";
 
 function NavList(props) {
   return (
-    <ul>
+    <ul className="nav-list-container">
       {props.data.map((item) => {
         const id = getIdFromUrl(item.url);
         return (
           <li key={item.name}>
             <Link onMouseEnter={() => props.onHover(id)} to={`/pokemon/${id}`}>
-              {id} {item.name}
+              {item.name} - {id}
             </Link>
           </li>
         );
