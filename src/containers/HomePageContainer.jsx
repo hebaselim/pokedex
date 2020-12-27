@@ -22,7 +22,7 @@ function HomePageContainer() {
       return (
         <Link
           key={item.name}
-          to={`/pokemon/${id}`}
+          to={`${process.env.PUBLIC_URL}/pokemon/${id}`}
           onMouseEnter={() => onHover(id)}
         >
           <PokemonCard

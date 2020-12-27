@@ -14,16 +14,17 @@ import NotFound from "./components/navList/NotFound";
 import React from "react";
 
 function App() {
+  console.log(process.env.PUBLIC_URL)
   return (
     <React.Fragment>
-      <Router>
+      <Router basename="/">
         <NavBar />
         <main className="app-container">
           <Switch>
-            <Route path="/pokedex" component={HomePageContainer} />
-            <Route path="/pokemon/:id" component={DetailsContainer} />
-            <Route path="/404" component={NotFound} />
-            <Redirect to="/404" />
+            <Route exact path={`${process.env.PUBLIC_URL}/`} component={HomePageContainer} />
+            <Route path={`${process.env.PUBLIC_URL}/pokemon/:id`} component={DetailsContainer} />
+            <Route path={`${process.env.PUBLIC_URL}/404`} component={NotFound} />
+            <Redirect to={`${process.env.PUBLIC_URL}/404`} />
           </Switch>
         </main>
       </Router>

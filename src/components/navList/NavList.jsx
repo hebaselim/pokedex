@@ -11,7 +11,7 @@ function NavList(props) {
         const id = getIdFromUrl(item.url);
         return (
           <li key={item.name}>
-            <Link onMouseEnter={() => props.onHover(id)} to={`/pokemon/${id}`}>
+            <Link onMouseEnter={() => props.onHover(id)} to={`${process.env.PUBLIC_URL}/pokemon/${id}`}>
               {item.name} - {id}
             </Link>
           </li>
