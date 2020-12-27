@@ -20,7 +20,7 @@ function App() {
         <NavBar />
         <main className="app-container">
           <Switch>
-            <Route exact path="/" component={HomePageContainer} />
+            <Route path="/pokedex" component={HomePageContainer} />
             <Route path="/pokemon/:id" component={DetailsContainer} />
             <Route path="/404" component={NotFound} />
             <Redirect to="/404" />
