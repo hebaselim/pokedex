@@ -1,59 +1,84 @@
 import "./Card.css";
 
-import { Fragment } from "react";
+import { capitalizeFirstLetter } from "../../utils/helpers";
 
-const Card = (props) => {
-    const { name, img, types, id, stats, evolutions} = props;
+const PokemonDetailsCard = (props) => {
+  const { name, img, types, id, stats, evolutions } = props;
 
-    return (
-    <div className="card-container">
-        <h2>{`${name} #${id}`}</h2>  
+  return (
+    <div className="pokemon-details-card">
+      <div className="pokemon-title">
+        <h2>{`${name} #${id}`}</h2>
+      </div>
+      <div className="content">
         <div className="card-img-container">
-        <img
-            src={img}
-            alt={name}
-        />
+          <img className="details-card-img" src={img} alt={name} />
         </div>
-     
-        <Types types={types}/>
-        <Stats stats={stats}/>
-        <Evolution evolutions={evolutions}/>
-    </div>)
-}
+        <div className="details-container">
+          <Types types={types} />
+          <div className="evo-stat centered-details">
+            <Stats stats={stats} />
+            <Evolution evolutions={evolutions} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-const Types = ({types}) => {
-    return (
-        <Fragment>
-            <h2>Types</h2>
-            {types.map((t, index)=> (<Badge key={index}>{t.type.name}</Badge>))}
-        </Fragment>
-    )
-    
-}
+export const PokemonCard = (props) => {
+  const { name, img, id } = props;
 
-const Stats = ({stats}) => {
-    return (
-        <Fragment>
-            <h2>Stats</h2>
-            {stats.map((s, index)=> (<div key={index}>{s.stat.name} - {s.base_stat}</div>))}
-        </Fragment>
-    )  
-}
+  return (
+    <div className="pokemon-card">
+      <div>
+        {name} - {`#${id}`}
+      </div>
+      <div className="background">
+        <img className="pokemon-img" src={img} alt={name}></img>
+      </div>
+    </div>
+  );
+};
 
-const Evolution = ({evolutions}) => {
-    console.log(evolutions)
-    return (
-        <Fragment>
-            <h2>Evolutions</h2>
-            {evolutions.map((e, index)=> (<div key={index}> {e.name}</div>))}
-        </Fragment>
-    )
-    
-}
+const Types = ({ types }) => {
+  return (
+    <div className="centered-details">
+      {types.map((t, index) => (
+        <span className="type-badge" key={index}>
+          {t.type.name}
+        </span>
+      ))}
+    </div>
+  );
+};
 
-const Badge = ({children}) => {
-   return <div className="badge">{children}</div>
- }
+const Stats = ({ stats }) => {
+  return (
+    <div className="stats">
+      <h4>Stats</h4>
+      <ul className="details-list">
+        {stats.map((s, index) => (
+          <li key={index}>
+            {s.stat.name} - {s.base_stat}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
+const Evolution = ({ evolutions }) => {
+  return (
+    <div className="evolutions">
+      <h4>Evolutions</h4>
+      <ul className="details-list">
+        {evolutions.map((e, index) => (
+          <li key={index}>{capitalizeFirstLetter(e.name)}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
-export default Card;
+export default PokemonDetailsCard;

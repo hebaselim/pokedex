@@ -4,7 +4,7 @@ ul {
 }
 
 .nav-list-container {
-    max-height: 90vh;
-    overflow-y: auto;
+    max-height: 100vh;
+    overflow: auto;
     flex: 1;
 }

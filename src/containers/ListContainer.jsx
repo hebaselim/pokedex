@@ -1,32 +1,20 @@
-import { DETAILS_API, LIST_API } from "../apiConstants";
-
 import { Fragment } from "react";
+import { LIST_API } from "../apiConstants";
 import { Loading } from "../components/Loading";
 import NavList from "../components/navList/NavList";
+import { onHover } from "../utils/helpers";
 import useFetcher from "../hooks/ListFetcher";
 
 function ListContainer() {
   const { data, status } = useFetcher(LIST_API);
   const { results } = data;
 
-  const onHover = (id) => {
-    if(!localStorage.getItem(id)){
-      fetch(DETAILS_API + id).then((response) => response.json())
-      .then((response) => {
-          
-        localStorage.setItem(id, JSON.stringify({"details":response}));
-      })
-      .catch((error) => {
-        console.log("Error", error);
-      });
-  }};
-
   return (
     <Fragment>
       {status === "LOADING" ? (
         <Loading />
       ) : (
-        <NavList onHover={onHover} data={results} />
+        <NavList onHover={(id) => onHover(id)} data={results} />
       )}
     </Fragment>
   );
